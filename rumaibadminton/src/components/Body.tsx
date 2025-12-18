@@ -28,9 +28,10 @@ const Body: React.FC = () => {
           </div>
         </div>
       </section>
-
+    <section className="max-w-7xl mx-auto px-4 sm:px-6">
       <RacketSelectorForm />
       <RacketResultSection />
+      </section>
     </>
   );
 };
