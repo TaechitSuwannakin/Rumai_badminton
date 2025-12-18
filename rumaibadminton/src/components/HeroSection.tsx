@@ -39,10 +39,21 @@ const HeroSection: React.FC = () => {
           <span className="text-emerald-600">สไตล์การเล่น</span>ของคุณ
         </h1>
 
-        <p className="text-sm text-slate-600 max-w-xl">
-          เลือกเลยว่าคุณชอบสายไหน - บุกไว บุกหนัก คุมเกม all around <br />
+        <p className="text-sm text-slate-600 max-w-xl">  เลือกเลยว่าคุณชอบสายไหน - บุกไว บุกหนัก คุมเกม all around <br />
           แล้วเราจะทำหน้าที่เลือกไม้ให้คุณเอง
         </p>
+        </div>
+
+        <li className="text-slate-900 "> ตัวเลขหน้าตัว U ยิ่งมาก ไม้ยิ่ง "เบา" </li>
+        <div className="text-sm text-slate-800 max-w-xl ">
+          <p><span className="text-black font-bold">3U</span> :	85 - 89g เหมาะกับสายรุก ตบหนัก ลูกพุ่งแรง เหมาะกับผู้เล่นที่มีแรงแขนดี เน้นเล่นประเภทเดี่ยว </p>
+          <p><span className="text-black font-bold">4U</span> :	80 - 84g เหมาะกับสายคุมเกม เน้นความคล่องตัว เล่นได้ทั้งเดี่ยวและคู่ </p>
+          <p><span className="text-black font-bold">5U</span> :	75 - 79g เหมาะกับสายตีชิล เน้นความคล่องตัวสูงสุด เล่นคู่สบายๆ ไม่เน้นบุกหนัก </p>  
+      </div>
+       <li className="text-slate-900 "> ความแข็งของก้าน (Shaft Stiffness) </li>
+        <div className="text-sm text-slate-600 max-w-xl ">
+          <p><span className="text-black font-bold"> ก้านอ่อน (Flexible):</span> มีสปริงช่วยส่งแรง ตีสบาย ไม่กินแรง แต่คอนโทรลทิศทางลูกยากเล็กน้อย <span className="text-red-500">เหมาะกับมือใหม่</span></p>
+          <p> <span className="text-black font-bold">ก้านแข็ง (Stiff):</span> ได้หน้าไม้ที่นิ่งและตอบสนองตามข้อมือทันที คอนโทรลทิศทางลูกได้แม่นยำมาก ตบลูกได้จิกและแรง แต่"กินแรง" สุดๆ ถ้าข้อมือไม่แข็งพอจะตีลูกไม่ไป <span className="text-red-500">เหมาะสำหรับ มือกลางๆขึ้นไป</span></p>
       </div>
     </div>
   );
