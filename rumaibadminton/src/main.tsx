@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx'; 
+import "leaflet/dist/leaflet.css";
 
-// 1. หา Root Element ใน HTML (ต้องมี <div id="root"></div> ใน index.html)
+
 const rootElement = document.getElementById('root'); 
 
 if (rootElement) {
