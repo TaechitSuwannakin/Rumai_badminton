@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.11.1",
-    "@supabase/supabase-js": "^2.88.0",
+    "@reduxjs/toolkit": "^2.11.2",
+    "@supabase/supabase-js": "^2.89.0",
     "axios": "^1.13.2",
     "leaflet": "^1.9.4",
     "react": "^19.2.0",

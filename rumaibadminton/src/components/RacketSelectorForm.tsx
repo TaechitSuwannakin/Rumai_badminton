@@ -158,19 +158,13 @@ const LevelBudgetPicker: React.FC = () => {
 
 const RacketSelectorForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const filters = useAppSelector(state => ({
-    playstyle: state.racket.playstyle,
-    balance: state.racket.balance,
-    level: state.racket.level,
-    budget: state.racket.budget,
-  }));
   const isLoading = useAppSelector(state => state.racket.isLoading);
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     // Dispatch the thunk to fetch recommended rackets based on current state
-    dispatch(fetchRecommendedRackets(filters));
-  }, [dispatch, filters]);
+    dispatch(fetchRecommendedRackets());
+  }, [dispatch]);
 
   return (
     <section className="bg-white rounded-3xl border border-slate-100 shadow-sm p-5 sm:p-6 space-y-6">
