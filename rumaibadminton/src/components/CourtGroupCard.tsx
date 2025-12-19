@@ -68,16 +68,15 @@ const CourtGroupCard: React.FC<CourtGroupCardProps> = ({
   }, [lat, lng]);
 
   return (
-    <div className="relative group w-full max-w-[320px]">
+    <div className="relative group w-full max-w-[640px]">
       <div className="absolute -inset-1 rounded-[24px] bg-gradient-to-br from-emerald-400/40 via-teal-300/30 to-blue-400/40 blur-xl opacity-70 group-hover:opacity-100 transition duration-500" />
 
       <div className="relative rounded-[24px] border border-white/60 bg-white/80 backdrop-blur-2xl shadow-xl overflow-hidden">
         {/* MAP */}
         <div
-          className="relative w-full h-[96px] overflow-hidden cursor-pointer bg-slate-200"
+          className="relative w-full h-[140px] overflow-hidden cursor-pointer bg-slate-200"
           onClick={openGoogleMaps}
-          title="คลิกเพื่อเปิดใน Google Maps"
-        >
+          title="คลิกเพื่อเปิดใน Google Maps" >
           {showMap ? (
             <MapContainer
               key={`${lat},${lng}`}

@@ -1,13 +1,6 @@
 import React, { useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
-import {
-  fetchRecommendedRackets,
-  setPlaystyle,
-  setBalance,
-  setLevel,
-  setBudget,
-  type Racket
-} from '../features/racket/racketSlice';
+import { fetchRecommendedRackets,setPlaystyle,setBalance, setLevel,setBudget,type Racket} from '../features/racket/racketSlice';
 
 // --- Sub-Component: Playstyle Picker ---
 
@@ -17,12 +10,15 @@ interface PlaystyleOption {
   description: string;
 }
 
+
+
 const PLAYSTYLE_OPTIONS: PlaystyleOption[] = [
   { value: 'All-round', title: 'All-round', description: 'ทำได้ทุกอย่างกลาง ๆ เล่นคู่เล่นเดี่ยวได้หมด' },
   { value: 'Fast attack', title: 'Fast attack', description: 'ชอบบุกเร็ว ตัดจบไว เน้นสปีดการเล่น' },
   { value: 'Power smash', title: 'Power smash', description: 'เน้นฟาดหนัก กดคู่ต่อสู้ด้วยลูกตบ' },
   { value: 'Control / Defense', title: 'Control / Defense', description: 'เน้นรับ คุมจังหวะ วางลูกแม่น ๆ' },
 ];
+
 
 const PlaystylePicker: React.FC = () => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
-//import axios from 'axios';
+import { supabase } from '../../lib/supabaseClient';
 
-// --- 1. กำหนดประเภทข้อมูลหลักก่อน---
-
+// --- 1) Define Core Data Types ---
 export interface Racket {
   id: number;
   brand: string;
@@ -12,113 +11,83 @@ export interface Racket {
   balance_tag: 'Head-light' | 'Even balance' | 'Head-heavy';
   player_level: 'Beginner' | 'Intermediate' | 'Advanced';
   price: number;
-  description: string;
-  image_url: string;
-  match_percentage: number; 
+  description: string | null;
+
+  // ✅ เก็บ path จาก Supabase Storage
+  image_path: string | null;
+
+  // ✅ สร้างเพิ่มสำหรับ UI (ไม่ต้องมีใน DB)
+  image_url?: string | null;
+
+  match_percentage: number | null;
 }
 
-// --- 2. กำหนดประเภท (โครงสร้าง state ใน Redux)---
-
+// --- 2) Define State Type ---
 export interface RacketState {
-  //Input State (ค่าที่ผู้ใช้เลือก)
   playstyle: Racket['style_tag'];
-  balance: Racket['balance_tag'] | 'Any'; 
-  level: string; 
-  budget: string; 
-  
-  // Result State (ผลลัพธ์/สถานะโหลด)
+  balance: Racket['balance_tag'] | 'Any';
+  level: string;
+  budget: string;
+
   recommendedRackets: Racket[];
   isLoading: boolean;
   error: string | null;
 }
 
-// --- 3. กำหนดสถานะเริิ่มต้นก่อน ---
-
+// --- 3) Initial State ---
 const initialState: RacketState = {
-  // เป็นค่าเริ่มต้นของ store เช่น
   playstyle: 'All-round',
   balance: 'Even balance',
-  level: 'Beginner (เพิ่งเริ่มเล่น)', 
+  level: 'Beginner (เพิ่งเริ่มเล่น)',
   budget: '1,500 – 3,000',
-  
-  recommendedRackets: [], //(ยังไม่มีไม้แนะนำจนกว่าจะ set)
+
+  recommendedRackets: [],
   isLoading: false,
   error: null,
 };
 
-// --- 4. ข้อมูลจำลองสำหรับตัวอย่าง ---
+// --- Helper: image_path -> public URL (Public bucket) ---
+const toPublicImageUrl = (image_path: string | null) => {
+  if (!image_path) return null;
+  return supabase.storage.from('rackets').getPublicUrl(image_path).data.publicUrl;
+};
 
-const MOCK_RACKETS: Racket[] = [
-  // ****ข้อมูลจำลองแทน API จริง (ไว้ใช้ทดสอบระบบแนะนำ/หน้า UI ก่อนทำ backend )***
-  {
-    id: 1,
-    brand: 'YONEX',
-    model_name: 'nanoflare 700 pro',
-    flex: 'Medium',
-    style_tag: 'All-round',
-    balance_tag: 'Head-light',
-    player_level: 'Intermediate',
-    price: 6500,
-    description: 'Head-Light · Medium Stiff · เหมาะกับสาย all-round / Control + speed',
-    image_url: 'image_392bec.png', // Assuming this is locally accessible
-    match_percentage: 88,
-  },
-  {
-    id: 2,
-    brand: 'YONEX',
-    model_name: 'nanoflare 700 pro',
-    flex: 'Medium',
-    style_tag: 'All-round',
-    balance_tag: 'Head-light',
-    player_level: 'Intermediate',
-    price: 6500,
-    description: 'Head-Light · Medium Stiff · เหมาะกับสาย all-round / Control + speed',
-    image_url: 'image_392bec.png', // Assuming this is locally accessible
-    match_percentage: 88,
-  },
-];
-
-// --- 5. Async Thunk for Fetching Data ---
-//อันนี้คือ action แบบ async ที่มี 3 สถานะอัตโนมัติ:pending, fulfilled, rejected
-// หมายเหตุ: ในแอปพลิเคชันจริง ตัวกรองจะถูกแยกโครงสร้างและแปลงเป็นค่าที่ใช้งานได้กับ API
+// --- 4) Async Thunk: Fetch from Supabase ---
 export const fetchRecommendedRackets = createAsyncThunk<
-  Racket[], // ประเภทการส่งคืนเมื่อดำเนินการเสร็จสิ้น
-  Omit<RacketState, 'recommendedRackets' | 'isLoading' | 'error'>, // ประเภทของอาร์กิวเมนต์ (ตัวกรอง)
-  { rejectValue: string } // ประเภทของค่าที่ถูกปฏิเสธ
->(
-  'racket/fetchRecommendedRackets',
-  async (filters, { rejectWithValue }) => {
-    // --- Simulate API Call and Filtering Logic ---
-    try {
-        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate delay
-        
-        const filteredRackets = MOCK_RACKETS.filter(racket => {
-            // Simplified matching logic for demonstration
-            let isMatch = true;
+  Racket[],
+  Omit<RacketState, 'recommendedRackets' | 'isLoading' | 'error'>,
+  { rejectValue: string }
+>('racket/fetchRecommendedRackets', async (filters, { rejectWithValue }) => {
+  try {
+    let query = supabase.from('rackets').select('*');
 
-            if (filters.playstyle !== 'All-round' && racket.style_tag !== filters.playstyle) {
-                isMatch = false;
-            }
-            if (filters.balance !== 'Any' && racket.balance_tag !== filters.balance) {
-                isMatch = false;
-            }
-            // Real logic should handle level and budget parsing
-            return isMatch;
-        });
-
-        return filteredRackets.length > 0 ? filteredRackets : MOCK_RACKETS; 
-        
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (err) {
-      // In a real app: return rejectWithValue(err.response.data.message);
-      return rejectWithValue('การดึงข้อมูลไม้แบดล้มเหลว กรุณาลองใหม่');
+    // ✅ Filter ตามที่มีในฟอร์มตอนนี้
+    if (filters.playstyle && filters.playstyle !== 'All-round') {
+      query = query.eq('style_tag', filters.playstyle);
     }
-  }
-);
+    if (filters.balance && filters.balance !== 'Any') {
+      query = query.eq('balance_tag', filters.balance);
+    }
 
+    // (ถ้าจะทำ level/budget ให้กรองจริง ค่อยเพิ่มทีหลัง)
 
-// --- 6. Create Slice ---
+    const { data, error } = await query.limit(50);
 
+    if (error) return rejectWithValue(error.message);
+
+    type RacketRow = Omit<Racket, 'image_url'>;
+
+    const rackets: Racket[] = ((data ?? []) as RacketRow[]).map((r) => ({
+      ...r,
+      image_url: toPublicImageUrl(r.image_path),
+      match_percentage: calculateMatchPercentage(r as Racket, filters),
+    }));
+
+    return rackets;
+  } catch (e: any) { return rejectWithValue(e?.message ?? 'การดึงข้อมูลไม้แบดล้มเหลว กรุณาลองใหม่'); }
+});
+
+// --- 5) Create Slice ---
 export const racketSlice = createSlice({
   name: 'racket',
   initialState,
@@ -126,7 +95,8 @@ export const racketSlice = createSlice({
     setPlaystyle: (state, action: PayloadAction<Racket['style_tag']>) => {
       state.playstyle = action.payload;
     },
-    setBalance: (state, action: PayloadAction<Racket['balance_tag']>) => {
+    // ✅ ให้รับ 'Any' ได้ (ของเดิมทอยเคยรับแค่ balance_tag)
+    setBalance: (state, action: PayloadAction<Racket['balance_tag'] | 'Any'>) => {
       state.balance = action.payload;
     },
     setLevel: (state, action: PayloadAction<string>) => {
@@ -135,11 +105,14 @@ export const racketSlice = createSlice({
     setBudget: (state, action: PayloadAction<string>) => {
       state.budget = action.payload;
     },
-    // Action to populate initial mock data (for testing display before form submit)
-    setInitialRackets: (state) => {
-        state.recommendedRackets = MOCK_RACKETS;
-    }
+
+    // ✅ อันนี้ไม่จำเป็นแล้ว (เพราะดึงจาก Supabase) แต่เก็บไว้ก็ได้
+    // ถ้าจะใช้ ให้ใส่ข้อมูลเองจากภายนอก
+    setInitialRackets: (state, action: PayloadAction<Racket[]>) => {
+      state.recommendedRackets = action.payload;
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecommendedRackets.pending, (state) => {
@@ -148,8 +121,12 @@ export const racketSlice = createSlice({
       })
       .addCase(fetchRecommendedRackets.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.recommendedRackets = action.payload;
+
+        state.recommendedRackets = [...action.payload].sort(
+          (a, b) => (b.match_percentage ?? 0) - (a.match_percentage ?? 0)
+        );
       })
+
       .addCase(fetchRecommendedRackets.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload ? action.payload : 'Unknown error during fetch.';
@@ -157,13 +134,45 @@ export const racketSlice = createSlice({
       });
   },
 });
+type Filters = {
+  playstyle: Racket['style_tag'];
+  balance: Racket['balance_tag'] | 'Any';
+  level: string;
+  budget: string;
+};
 
-export const { 
-    setPlaystyle, 
-    setBalance, 
-    setLevel, 
-    setBudget, 
-    setInitialRackets 
-} = racketSlice.actions;
+const calculateMatchPercentage = (r: Racket, f: Filters) => {
+  let score = 0;
+  let total = 0;
+
+  // 1) สไตล์การเล่น (น้ำหนักมาก)
+  total += 40;
+  if (r.style_tag === f.playstyle) score += 40;
+
+  // 2) Balance / น้ำหนักไม้
+  total += 25;
+  if (f.balance === 'Any' || r.balance_tag === f.balance) score += 25;
+
+  // 3) ระดับผู้เล่น
+  total += 15;
+  if (r.player_level && f.level.includes(r.player_level)) score += 15;
+
+  // 4) งบประมาณ (แบบง่าย)
+  total += 20;
+  if (f.budget) {
+    // ดึงตัวเลขจากข้อความงบ เช่น "1,500 – 3,000"
+    const nums = f.budget.match(/\d+/g)?.map(Number);
+    if (nums && nums.length >= 2) {
+      const [min, max] = nums;
+      if (r.price >= min && r.price <= max) score += 20;
+    }
+  }
+
+  return Math.round((score / total) * 100);
+};
+
+
+export const { setPlaystyle, setBalance, setLevel, setBudget, setInitialRackets } =
+  racketSlice.actions;
 
 export default racketSlice.reducer;

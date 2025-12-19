@@ -4,56 +4,85 @@ import { useAppSelector } from "../app/hooks";
 const HeroSection: React.FC = () => {
   const previewRacket = useAppSelector((state) => state.racket.recommendedRackets[0]);
 
-  const defaultPreview = {
-    brand: "Astro",
-    model_name: "Force 9000",
-    details: "(Even · Medium)",
-    description: "เหมาะกับผู้เล่นที่ชอบเปิดเกมเร็ว ตีโต้ไว แต่ยังต้องการคุมหน้าเน็ตได้ดี",
-    tags: ["All-round / Fast attack", "Even balance", "งบ 2,000–3,000"],
-  };
-
-  const displayData = previewRacket
-    ? {
-        brand: previewRacket.brand,
-        model_name: previewRacket.model_name,
-        details: `(${previewRacket.balance_tag.split(" ")[0]} · ${previewRacket.flex})`,
-        description: previewRacket.description,
-        tags: [ `${previewRacket.style_tag} / ${previewRacket.flex}`,   previewRacket.balance_tag,
-          `งบ ${previewRacket.price.toLocaleString()} ฿`,
-        ],
-      }
-    : defaultPreview;
-
   return (
-    <div className="space-y-5">
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-emerald-100 shadow-sm">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-        <span className="text-[11px] font-medium text-emerald-700">
-          เพิ่มตัวเลือกเพื่อให้คุณมีตัวเลือกที่หลากหลาย
-        </span>
-      </div>
+    <div className="relative overflow-hidden rounded-[32px] bg-slate-50/80 border border-white p-6 sm:p-8 shadow-sm">
+      {/* Decorative Blur Blobs */}
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-100/40 blur-[60px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-100/30 blur-[60px] rounded-full pointer-events-none" />
 
-      <div className="space-y-3">
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
-          เลือกไม้แบดที่เหมาะกับ
-          <span className="text-emerald-600">สไตล์การเล่น</span>ของคุณ
-        </h1>
-
-        <p className="text-sm text-slate-600 max-w-xl">  เลือกเลยว่าคุณชอบสายไหน - บุกไว บุกหนัก คุมเกม all around <br />
-          แล้วเราจะทำหน้าที่เลือกไม้ให้คุณเอง
-        </p>
+      <div className="relative z-10 space-y-6">
+        {/* --- Header --- */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-bold tracking-[0.2em] text-emerald-700/60 uppercase">Racket Guide</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 leading-tight">
+            เลือกไม้แบดที่เหมาะกับ <span className="text-emerald-600">สไตล์การเล่น</span>ของคุณ
+          </h1>
+          <p className="text-xs text-slate-500 max-w-lg">
+            เลือกสายและแนวที่ชอบ แล้วเราจะทำหน้าที่เลือกไม้ให้คุณเอง ให้เป็น 1 ในตัวเลือกที่เหมาะกับคุณที่สุด!
+          </p>
         </div>
 
-        <li className="text-slate-900 "> ตัวเลขหน้าตัว U ยิ่งมาก ไม้ยิ่ง "เบา" </li>
-        <div className="text-sm text-slate-800 max-w-xl ">
-          <p><span className="text-black font-bold">3U</span> :	85 - 89g เหมาะกับสายรุก ตบหนัก ลูกพุ่งแรง เหมาะกับผู้เล่นที่มีแรงแขนดี เน้นเล่นประเภทเดี่ยว </p>
-          <p><span className="text-black font-bold">4U</span> :	80 - 84g เหมาะกับสายคุมเกม เน้นความคล่องตัว เล่นได้ทั้งเดี่ยวและคู่ </p>
-          <p><span className="text-black font-bold">5U</span> :	75 - 79g เหมาะกับสายตีชิล เน้นความคล่องตัวสูงสุด เล่นคู่สบายๆ ไม่เน้นบุกหนัก </p>  
-      </div>
-       <li className="text-slate-900 "> ความแข็งของก้าน (Shaft Stiffness) </li>
-        <div className="text-sm text-slate-600 max-w-xl ">
-          <p><span className="text-black font-bold"> ก้านอ่อน (Flexible):</span> มีสปริงช่วยส่งแรง ตีสบาย ไม่กินแรง แต่คอนโทรลทิศทางลูกยากเล็กน้อย <span className="text-red-500">เหมาะกับมือใหม่</span></p>
-          <p> <span className="text-black font-bold">ก้านแข็ง (Stiff):</span> ได้หน้าไม้ที่นิ่งและตอบสนองตามข้อมือทันที คอนโทรลทิศทางลูกได้แม่นยำมาก ตบลูกได้จิกและแรง แต่"กินแรง" สุดๆ ถ้าข้อมือไม่แข็งพอจะตีลูกไม่ไป <span className="text-red-500">เหมาะสำหรับ มือกลางๆขึ้นไป</span></p>
+        {/* --- ข้อมูลน้ำหนัก (Weight) --- */}
+        <div className="bg-white/60 backdrop-blur-sm border border-white/80 p-5 rounded-2xl shadow-sm space-y-4">
+          <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+            <h3 className="text-xs font-black uppercase tracking-widest text-slate-400">ตัวเลขหน้า U ยิ่งมาก ไม้ยิ่ง "เบา"</h3>
+          </div>
+          
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { u: "3U", w: "85-89g", t: "สายรุก", d: "ตบหนัก ลูกพุ่งแรง เหมาะกับคนแรงแขนดี เน้นเล่นเดี่ยว แต่หนักมากกก" },
+              { u: "4U", w: "80-84g", t: "สายคุมเกม", d: "เน้นความคล่องตัว ตบตัดหยอด ทำได้หมด เล่นได้ทั้งเดี่ยวและคู่" },
+              { u: "5U", w: "75-79g", t: "สายตีชิล", d: "ความคล่องตัวสูงสุด เล่นคู่สบายๆ ไม่เน้นบุกหนัก" },
+            ].map((item) => (
+              <div key={item.u} className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black text-emerald-600">{item.u}</span>
+                  <span className="text-[11px] font-bold text-slate-400">{item.w}</span>
+                </div>
+                <p className="text-[12px] font-bold text-slate-700">{item.t}</p>
+                <p className="text-[11px] leading-relaxed text-slate-500">{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* --- ความแข็งของก้าน (Stiffness) --- */}
+        <div className="bg-white/60 backdrop-blur-sm border border-white/80 p-5 rounded-2xl shadow-sm space-y-4">
+          <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+            <h3 className="text-xs font-black uppercase tracking-widest text-slate-400">ความแข็งของก้าน (Shaft Stiffness)</h3>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="space-y-1">
+              <p className="text-[13px] font-bold text-slate-800">ก้านอ่อน (Flexible)</p>
+              <p className="text-[12px] leading-relaxed text-slate-600">
+                มีสปริงช่วยส่งแรง ตีสบาย ไม่กินแรง แต่คอนโทรลทิศทางยากเล็กน้อย 
+                <span className="ml-1 text-red-500 font-bold underline decoration-emerald-200 underline-offset-2">เหมาะกับมือใหม่และทั่วไป</span>
+              </p>
+            </div>
+            <div className="space-y-1 border-l sm:pl-6 border-slate-100">
+              <p className="text-[13px] font-bold text-slate-800">ก้านแข็ง (Stiff)</p>
+              <p className="text-[12px] leading-relaxed text-slate-600">
+                หน้าไม้นิ่ง คอนโทรลแม่นยำ ตบจิกและแรง แต่กินแรงสุดๆ ถ้าข้อมือไม่แข็งจะตีไม่ไป 
+                <span className="ml-1 text-red-500 font-bold underline decoration-red-100 underline-offset-2">เหมาะสำหรับมือกลางขึ้นไป</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* --- Recommendation Preview --- */}
+        {previewRacket && (
+          <div className="flex items-center justify-between px-4 py-3 bg-emerald-600/5 rounded-xl border border-emerald-100/50">
+            <p className="text-[11px] text-slate-500 font-medium">
+              Preview: <span className="text-emerald-700 font-bold">{previewRacket.brand} {previewRacket.model_name}</span> 
+              <span className="ml-1 opacity-60">({previewRacket.balance_tag.split(" ")[0]} · {previewRacket.flex})</span>
+            </p>
+            <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-tighter">Recommended</span>
+          </div>
+        )}
       </div>
     </div>
   );

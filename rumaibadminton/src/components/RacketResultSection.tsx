@@ -1,46 +1,63 @@
-import React from 'react';
-import { useAppSelector } from '../app/hooks';
-import RacketCard from './RacketCard';
+import React from "react";
+import { useAppSelector } from "../app/hooks";
 
 const RacketResultSection: React.FC = () => {
-  const { recommendedRackets, isLoading, error } = useAppSelector(state => state.racket);
+  const rackets = useAppSelector(
+    (state) => state.racket.recommendedRackets
+  );
+
+  if (rackets.length === 0) {
+    return (
+      <section id="racket-results" className="text-center text-sm text-slate-500">
+        ยังไม่มีผลลัพธ์ กรุณาเลือกสไตล์แล้วกดค้นหา
+      </section>
+    );
+  }
 
   return (
-    <section className="space-y-4 pb-10">
-      <div className="flex items-center justify-between ">
-        <h2 className="text-lg sm:text-xl font-semibold tracking-tight">
-          ไม้ที่น่าจะเหมาะกับคุณ ({recommendedRackets.length})
-        </h2>
-      </div>
+    <section
+      id="racket-results"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10"
+    >
+      {rackets.map((racket) => (
+        <div
+          key={racket.id}
+          className="rounded-3xl border border-slate-100 bg-white shadow-sm p-4 space-y-3"
+        >
+          <img
+            src={racket.image_url ?? "/fallback.png"}
+            alt={racket.model_name}
+            className="h-40 mx-auto object-contain"
+          />
 
-      {isLoading && (
-        <div className="text-center py-10 text-slate-500">
-          <div className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-emerald-600 rounded-full"></div>
-          <p className="mt-2">กำลังค้นหาไม้แบดที่เหมาะกับคุณ...</p>
-        </div>
-      )}
-
-      {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-xl text-sm">
-          เกิดข้อผิดพลาด: {error}
-        </div>
-      )}
-      
-      {!isLoading && !error && recommendedRackets.length === 0 && (
-          <div className="text-center py-10 text-slate-500 bg-white border border-slate-100 rounded-xl">
-              <p>ไม่พบไม้แบดที่ตรงกับตัวเลือกของคุณ กรุณาลองปรับตัวเลือกใหม่</p>
+          <div className="space-y-1">
+            <h3 className="font-semibold text-sm">
+              {racket.brand} {racket.model_name}
+            </h3>
+            <p className="text-xs text-slate-600">
+              {racket.description ?? "ไม่มีคำอธิบาย"}
+            </p>
           </div>
-      )}
 
-      {!isLoading && recommendedRackets.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-          {recommendedRackets.map((racket) => (
-            <RacketCard key={racket.id} racket={racket} />
-          ))}
+          <div className="flex flex-wrap gap-2 text-[11px]">
+            <span className="px-2 py-1 rounded-full bg-emerald-50 text-emerald-700">
+              {racket.style_tag}
+            </span>
+            <span className="px-2 py-1 rounded-full bg-slate-50">
+              {racket.balance_tag}
+            </span>
+            <span className="px-2 py-1 rounded-full bg-slate-50">
+              {racket.flex}
+            </span>
+          </div>
+
+          <div className="text-sm font-medium">
+            ฿ {racket.price.toLocaleString()}
+          </div>
         </div>
-      )}
+      ))}
     </section>
   );
 };
 
-export default RacketResultSection; 
+export default RacketResultSection;
