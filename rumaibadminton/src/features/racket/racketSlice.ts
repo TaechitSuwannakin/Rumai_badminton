@@ -96,14 +96,11 @@ export const fetchRecommendedRackets = createAsyncThunk<
     // เริ่มสร้าง Query
     let query = supabase.from('rackets').select('*');
 
-    // -----------------------------------------------------
-    // 🔍 ZONE: Filter Logic (กรองข้อมูลจาก Database จริง)
-    // -----------------------------------------------------
-
+    
     // 1. กรอง Style
     // ถ้าเลือก All-round จะไม่กรอง (ดึงมาหมดเพื่อให้เห็นตัวเลือกหลากหลาย)
     if (state.playstyle && state.playstyle !== 'All-round') {
-      query = query.eq('style_tag', state.playstyle);
+      query = query.ilike('style_tag', state.playstyle);
     }
 
     // 2. กรอง Balance
@@ -117,8 +114,6 @@ export const fetchRecommendedRackets = createAsyncThunk<
         query = query.eq('player_level', 'Beginner');
       } else if (state.level.includes('Intermediate')) {
         query = query.eq('player_level', 'Intermediate');
-      } else if (state.level.includes('Advanced')) {
-        query = query.eq('player_level', 'Advanced');
       }
     }
 
@@ -154,11 +149,7 @@ export const fetchRecommendedRackets = createAsyncThunk<
     const processedData = rawData.map((r) => ({
       ...r,
       image_url: toPublicImageUrl(r.image_path),
-      match_percentage: calculateMatchPercentage(r, state),
     }));
-
-    // เรียงลำดับจาก แมตช์มาก -> น้อย
-    processedData.sort((a, b) => (b.match_percentage || 0) - (a.match_percentage || 0));
 
     return processedData;
 
