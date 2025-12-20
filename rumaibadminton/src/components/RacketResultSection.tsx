@@ -28,10 +28,11 @@ const RacketResultSection: React.FC = () => {
   }
 
   // 3. กรณีไม่มีข้อมูล (ยังไม่ค้นหา หรือ หาไม่เจอ)
-  if (recommendedRackets.length === 0) {
+  if (!recommendedRackets || recommendedRackets.length === 0) {
     return (
-      <section id="racket-results" className="mt-10 text-center py-10 border-2 border-dashed border-slate-200 rounded-3xl">
-        <p className="text-slate-400">ยังไม่มีผลลัพธ์ เลือกสเปคด้านบนแล้วกด "ดูไม้ที่เหมาะกับฉัน" ได้เลย</p>
+      <section className="mt-10 text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+        <p className="text-slate-500 text-lg">ไม่พบไม้แบดที่ตรงกับเงื่อนไขนี้ครับ 😅</p>
+        <p className="text-slate-400 text-sm mt-2">ลองเปลี่ยนงบประมาณ หรือสไตล์การเล่นดูนะครับ</p>
       </section>
     );
   }
@@ -47,14 +48,7 @@ const RacketResultSection: React.FC = () => {
           key={racket.id}
           className="group relative rounded-3xl border border-slate-100 bg-white p-4 space-y-3 transition-all hover:shadow-lg hover:-translate-y-1 duration-300"
         >
-          {/* Badge % ความแมตช์ (ไฮไลท์เด็ด) */}
-          {racket.match_percentage && racket.match_percentage > 0 && (
-             <div className={`absolute top-4 right-4 text-[10px] font-bold px-2 py-1 rounded-full shadow-sm z-10
-                ${racket.match_percentage >= 80 ? 'bg-emerald-500 text-white' : 'bg-amber-400 text-white'}`}>
-                เข้ากันได้ {racket.match_percentage}%
-             </div>
-          )}
-
+          
           {/* รูปภาพ */}
           <div className="bg-slate-50 rounded-2xl p-4 mb-2">
             <img

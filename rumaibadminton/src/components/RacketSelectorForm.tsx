@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { fetchRecommendedRackets,setPlaystyle,setBalance, setLevel,setBudget,type Racket} from '../features/racket/racketSlice';
+import { fetchRecommendedRackets, setPlaystyle, setBalance, setLevel, setBudget, type Racket } from '../features/racket/racketSlice';
 
 // --- Sub-Component: Playstyle Picker ---
 
@@ -10,15 +10,12 @@ interface PlaystyleOption {
   description: string;
 }
 
-
-
 const PLAYSTYLE_OPTIONS: PlaystyleOption[] = [
   { value: 'All-round', title: 'All-round', description: 'ทำได้ทุกอย่างกลาง ๆ เล่นคู่เล่นเดี่ยวได้หมด' },
   { value: 'Fast attack', title: 'Fast attack', description: 'ชอบบุกเร็ว ตัดจบไว เน้นสปีดการเล่น' },
   { value: 'Power smash', title: 'Power smash', description: 'เน้นฟาดหนัก กดคู่ต่อสู้ด้วยลูกตบ' },
   { value: 'Control / Defense', title: 'Control / Defense', description: 'เน้นรับ คุมจังหวะ วางลูกแม่น ๆ' },
 ];
-
 
 const PlaystylePicker: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +27,7 @@ const PlaystylePicker: React.FC = () => {
       <div className="grid grid-cols-2 gap-3 text-xs">
         {PLAYSTYLE_OPTIONS.map((option) => (
           <button
+            type="button" // ✅ แก้จุดที่ 1: ใส่ type="button" เพื่อไม่ให้ submit อัตโนมัติ
             key={option.value}
             onClick={() => dispatch(setPlaystyle(option.value))}
             className={`rounded-2xl px-3 py-3 text-left transition-all shadow-sm
@@ -72,7 +70,7 @@ const BalancePicker: React.FC = () => {
         {BALANCE_OPTIONS.map((option) => (
           <label
             key={option.value}
-            className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-all
+            className={`flex items-center gap-3 rounded-2xl px-3 py-2.5 transition-all cursor-pointer
                             ${currentBalance === option.value
                 ? 'border border-emerald-500 bg-emerald-50'
                 : 'border border-slate-200 hover:border-emerald-400'
@@ -105,9 +103,8 @@ const LevelBudgetPicker: React.FC = () => {
   const currentBudget = useAppSelector(state => state.racket.budget);
 
   const LEVEL_OPTIONS = [
-    'Beginner (เพิ่งเริ่มเล่น)',
+    'Beginner (เพิ่งเริ่มเล่นมือหน้าบ้าน)',
     'Intermediate (เล่นก๊วนประจำ)',
-    'Advanced (แข่งบ้างเป็นบางครั้ง)'
   ];
 
   const BUDGET_OPTIONS = [
@@ -121,10 +118,10 @@ const LevelBudgetPicker: React.FC = () => {
       <div className="space-y-2">
         <h3 className="text-sm font-medium text-slate-700">ระดับการเล่น</h3>
         <select
-          value={currentLevel}
+          value={currentLevel || ''}
           onChange={(e) => dispatch(setLevel(e.target.value))}
-          className="w-full border border-slate-200 rounded-2xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        >
+          className="w-full border border-slate-200 rounded-2xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-400" >
+          <option value="" disabled>-- กรุณาเลือก --</option>
           {LEVEL_OPTIONS.map(option => (
             <option key={option} value={option}>{option}</option>
           ))}
@@ -136,6 +133,7 @@ const LevelBudgetPicker: React.FC = () => {
         <div className="flex flex-wrap gap-2 text-xs">
           {BUDGET_OPTIONS.map(option => (
             <button
+              type="button" // ✅ แก้จุดที่ 2: ใส่ type="button" เพื่อไม่ให้ submit อัตโนมัติ
               key={option}
               onClick={() => dispatch(setBudget(option))}
               className={`px-3 py-2 rounded-2xl transition-all
@@ -162,7 +160,6 @@ const RacketSelectorForm: React.FC = () => {
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
-    // Dispatch the thunk to fetch recommended rackets based on current state
     dispatch(fetchRecommendedRackets());
   }, [dispatch]);
 
@@ -182,7 +179,7 @@ const RacketSelectorForm: React.FC = () => {
 
         <div className="pt-2">
           <button
-            type="submit"
+            type="submit" // ✅ แก้จุดที่ 3: ต้องเป็น type="submit" เพื่อให้ฟอร์มทำงานตอนกดปุ่มนี้
             disabled={isLoading}
             className="w-full sm:w-auto px-6 py-2.5 rounded-2xl bg-slate-900 text-white text-sm font-medium hover:bg-slate-800 disabled:bg-slate-400 disabled:cursor-not-allowed"
           >
