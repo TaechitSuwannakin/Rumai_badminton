@@ -1,3 +1,5 @@
 ﻿brand,model_name,price,style_tag,balance_tag,player_level,flex,description,image_path
-yonex,Astrox88dpro5800,5800,Power smash,Head-heavy,Intermediate,stiff,มี 3U/4U ไม้หัวหนัก ก้านแข็ง เน้นตบกดจากแดนหลัง พลังทำลายล้างสูง ลูกพุ่งแรงสะใจ ขึ้นเอ็นได้สูงสุด 29 ปอนด์ ตัวท็อปสำหรับขาโหดสายบุกครับ,yonex/ver.pro/astrox88dpro.png
-yonex,arcsaber11pro,8200,All-around,,Intermediate,Stiff,มี 3U/4U  ไม้สมดุลกลาง ก้านแข็ง เน้นคอนโทรลทิศทาง ฟีลตีแน่นและนุ่ม (ลูกเกาะหน้าไม้) สวนกลับไว ขึ้นเอ็นได้สูงสุด 28 ปอนด์ ดีเยี่ยมสำหรับสายเทคนิคที่เน้นความแม่นยำครับ,yonex/ver.pro/arcsaber11pro.png
+yonex,Astrox 88D pro,5800,Power smash,Head-heavy,Intermediate,stiff,ตัวท็อปสำหรับขาโหดสายบุก เน้นตบกดจากแดนหลัง พลังทำลายล้างสูง  ขึ้นเอ็นได้สูงสุด 29 ปอนด์ ,yonex/ver.pro/astrox88dpro.png
+yonex,Arcsaber 11 pro,8200,All-around,Even balance,Intermediate,Stiff,สายคอนโทรลที่จริงใจ เน้นคอนโทรลทิศทาง ฟีลตีแน่นและนุ่ม สวนกลับไว ขึ้นเอ็นได้สูงสุด 28 ปอนด์ ,yonex/ver.pro/arcsaber11pro.png
+victor,Thruster Ryuga II,5200,Power smash,Head-heavy,Intermediate,stiff,ตัวจบสำหรับสายบุกบ้าพลัง เน้นตบหนักหน่วง ลูกพุ่งออกจากหน้าไม้ไวและแรงมาก ขึ้นเอ็นได้โหดถึง 31 ปอนด์ ,victor/ryuga_ii.png
+victor,Thruster_k,4800,"Power smash, Speed",Head-heavy,Intermediate,stiff,ไม้สายบุกที่มีความไว หน้าไม้ตัดอากาศเร็ว ตบสนุกและดาดสวนได้ดี,victor/thruster_k.png

@@ -6,11 +6,12 @@ export interface Racket {
   id: number;
   brand: string;
   model_name: string;
-  style_tag: 'All-round' | 'Fast attack' | 'Power smash' | 'Control / Defense';
+  // เป็น string เพื่อรองรับหลาย tag เช่น "Power smash, Speed"
+  style_tag: string; 
   balance_tag: 'Head-light' | 'Even balance' | 'Head-heavy';
   player_level: 'Beginner' | 'Intermediate';
   price: number;
-  flex?: string; // เพิ่ม flex เผื่อไว้
+  flex?: string;
   description: string | null;
   image_path: string | null;
   
@@ -31,11 +32,12 @@ export interface RacketState {
   error: string | null;
 }
 
+// กำหนดค่าเริ่มต้นเป็น null จริงๆ (ไม่ใช่ string 'null')
 const initialState: RacketState = {
-  playstyle: 'null',
-  balance: 'null',
-  level: 'null',
-  budget: 'null',
+  playstyle: null,
+  balance: null,
+  level: null,
+  budget: null,
   recommendedRackets: [],
   isLoading: false,
   error: null,
@@ -48,42 +50,6 @@ const toPublicImageUrl = (image_path: string | null) => {
   return supabase.storage.from('rackets').getPublicUrl(image_path).data.publicUrl;
 };
 
-// --- Helper: Calculate Match Score (คำนวณคะแนนความเหมาะสม) ---
-const calculateMatchPercentage = (r: Racket, f: RacketState) => {
-  let score = 0;
-  const maxScore = 100;
-
-  // 1. Style (40%)
-  if (r.style_tag === f.playstyle) score += 40;
-
-  // 2. Balance (25%)
-  if (f.balance === 'Any' || r.balance_tag === f.balance) score += 25;
-  else if (f.playstyle === 'All-round' && r.balance_tag === 'Even balance') score += 15; // คะแนนช่วย
-
-  // 3. Level (15%)
-  // เช็คว่า level ใน UI (ยาวๆ) มีคำที่ตรงกับ DB (สั้นๆ) หรือไม่
-  if (r.player_level && f.level.includes(r.player_level)) score += 15;
-
-  // 4. Budget Score (20%) - ให้คะแนนถ้าราคาอยู่ในงบ
-  if (f.budget) {
-    const cleanBudget = f.budget.replace(/,/g, '');
-    const nums = cleanBudget.match(/\d+/g)?.map(Number);
-    
-    if (nums) {
-        if (f.budget.includes('ต่ำกว่า') && nums[0]) {
-            if (r.price <= nums[0]) score += 20;
-        } else if (f.budget.includes('ขึ้นไป') && nums[0]) {
-            if (r.price >= nums[0]) score += 20;
-        } else if (nums.length >= 2) {
-            const [min, max] = nums;
-            if (r.price >= min && r.price <= max) score += 20;
-        }
-    }
-  }
-
-  return Math.min(score, maxScore);
-};
-
 // --- 4) Async Thunk: Fetch & Filter ---
 export const fetchRecommendedRackets = createAsyncThunk<
   Racket[],
@@ -93,22 +59,36 @@ export const fetchRecommendedRackets = createAsyncThunk<
   try {
     const state = getState().racket;
     
-    // เริ่มสร้าง Query
+    // 🛑 GUARD CLAUSE: เช็คว่าเลือกครบทุกช่องหรือยัง?
+    // ถ้าช่องไหนยังเป็น null หรือค่าว่าง หรือเป็น string 'null' ให้หยุดทำงานทันที
+    if (
+      !state.playstyle || state.playstyle === 'null' ||
+      !state.balance || state.balance === 'null' ||
+      !state.level || state.level === 'null' ||
+      !state.budget || state.budget === 'null'
+    ) {
+      // คืนค่าอาเรย์ว่าง (หน้าจอจะไม่แสดงผลลัพธ์)
+      return [];
+    }
+
+    // --- ถ้าเลือกครบแล้ว ถึงจะเริ่มค้นหา ---
+    
     let query = supabase.from('rackets').select('*');
 
-    
-    // 1. กรอง Style
-    // ถ้าเลือก All-round จะไม่กรอง (ดึงมาหมดเพื่อให้เห็นตัวเลือกหลากหลาย)
-    if (state.playstyle && state.playstyle !== 'All-round') {
-      query = query.ilike('style_tag', state.playstyle);
+    // 1. กรอง Style (Playstyle)
+    // ใช้ .ilike และ % เพื่อหาคำค้นหาที่ซ่อนอยู่ในข้อความ (เช่น หา 'Speed' ใน 'Power smash, Speed')
+    if (state.playstyle) {
+      query = query.ilike('style_tag', `%${state.playstyle}%`);
     }
 
     // 2. กรอง Balance
+    // ใช้ .eq เพราะ Balance มักจะมีค่าเดียวและตรงตัว
     if (state.balance) {
       query = query.eq('balance_tag', state.balance);
     }
 
-    // 3. กรอง Level (แปลงข้อความยาวๆ เป็นคำสั้นๆ เพื่อหาใน DB)
+    // 3. กรอง Level
+    // ใช้ .eq เพื่อความแม่นยำ (แต่ถ้าในอนาคตมีหลาย Level ในช่องเดียว ให้เปลี่ยนเป็น .ilike)
     if (state.level) {
       if (state.level.includes('Beginner')) {
         query = query.eq('player_level', 'Beginner');
@@ -117,20 +97,22 @@ export const fetchRecommendedRackets = createAsyncThunk<
       }
     }
 
-    // 4. กรอง Budget (แกะตัวเลขจาก string มาเทียบราคา)
+    // 4. กรอง Budget
     if (state.budget) {
-       const cleanBudget = state.budget.replace(/,/g, ''); // ลบลูกน้ำออก
-       const nums = cleanBudget.match(/\d+/g)?.map(Number); // หาตัวเลขทั้งหมด
+       // ลบลูกน้ำออก (เช่น "2,000" -> "2000")
+       const cleanBudget = state.budget.replace(/,/g, ''); 
+       // ดึงตัวเลขทั้งหมดออกมาเก็บใน Array
+       const nums = cleanBudget.match(/\d+/g)?.map(Number); 
 
        if (nums && nums.length > 0) {
           if (state.budget.includes('ต่ำกว่า')) {
-             // กรณี: "ต่ำกว่า 1,500"
+             // กรณี: "ต่ำกว่า 2,000" -> ราคาต้องน้อยกว่าหรือเท่ากับ 2000
              query = query.lte('price', nums[0]);
           } else if (state.budget.includes('ขึ้นไป')) {
-             // กรณี: "3,000 ขึ้นไป"
+             // กรณี: "4,000 ขึ้นไป" -> ราคาต้องมากกว่าหรือเท่ากับ 4000
              query = query.gte('price', nums[0]);
           } else if (nums.length >= 2) {
-             // กรณี: "1,500 - 3,000"
+             // กรณี: "2,000 - 4,000" -> ราคาต้องอยู่ระหว่างกลาง
              query = query.gte('price', nums[0]).lte('price', nums[1]);
           }
        }
@@ -145,7 +127,7 @@ export const fetchRecommendedRackets = createAsyncThunk<
 
     const rawData = data as Racket[];
 
-    // แปลงข้อมูล URL และคำนวณ % ความแมตช์
+    // แปลงข้อมูล URL
     const processedData = rawData.map((r) => ({
       ...r,
       image_url: toPublicImageUrl(r.image_path),
