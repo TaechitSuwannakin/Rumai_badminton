@@ -31,7 +31,7 @@ const RacketResultSection: React.FC = () => {
   if (!recommendedRackets || recommendedRackets.length === 0) {
     return (
       <section className="mt-10 text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
-        <p className="text-slate-500 text-lg">ไม่พบไม้แบดที่ตรงกับเงื่อนไขนี้ครับ 😅</p>
+        <p className="text-slate-500 text-lg">ไม่พบไม้แบดที่ตรงกับเงื่อนไขนี้ </p>
         <p className="text-slate-400 text-sm mt-2">ลองเปลี่ยนงบประมาณ หรือสไตล์การเล่นดูนะครับ</p>
       </section>
     );
@@ -48,7 +48,7 @@ const RacketResultSection: React.FC = () => {
           key={racket.id}
           className="group relative rounded-3xl border border-slate-100 bg-white p-4 space-y-3 transition-all hover:shadow-lg hover:-translate-y-1 duration-300"
         >
-          
+
           {/* รูปภาพ */}
           <div className="bg-slate-50 rounded-2xl p-4 mb-2">
             <img

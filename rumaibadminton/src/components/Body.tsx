@@ -14,7 +14,7 @@ const Body: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr,1fr] gap-10 lg:gap-12 items-start">
           <HeroSection />
 
-          <div className="w-full lg:justify-self-end lg:max-w-sm">
+          <div className="w-full lg:justify-self-end lg:max-w-sm mx-auto">
             <CourtGroupCard
               courtName="Everyday badminton"
               lat={13.860289389496884}

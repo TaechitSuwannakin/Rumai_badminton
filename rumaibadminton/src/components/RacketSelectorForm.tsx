@@ -65,7 +65,7 @@ const BalancePicker: React.FC = () => {
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-medium text-slate-700">ฟีลไม้ที่ชอบ</h3>
+      <h3 className="text-sm font-medium text-slate-700">ฟีลน้ำหนักหัวไม้ที่ชอบ</h3>
       <div className="grid grid-cols-1 gap-2 text-xs">
         {BALANCE_OPTIONS.map((option) => (
           <label
@@ -108,9 +108,10 @@ const LevelBudgetPicker: React.FC = () => {
   ];
 
   const BUDGET_OPTIONS = [
-    'ต่ำกว่า 1,500',
-    '1,500 – 3,000',
-    '3,000 ขึ้นไป'
+    'ต่ำกว่า 2,000',
+    '2,000 – 4,000',
+    '4,000 - 6,000',
+     '6,000 ขึ้นไป',
   ];
 
   return (
@@ -129,11 +130,11 @@ const LevelBudgetPicker: React.FC = () => {
       </div>
 
       <div className="space-y-2">
-        <h3 className="text-sm font-medium text-slate-700">งบประมาณต่อไม้ (ประมาณ)</h3>
+        <h3 className="text-sm font-medium text-slate-700">งบประมาณต่อไม้</h3>
         <div className="flex flex-wrap gap-2 text-xs">
           {BUDGET_OPTIONS.map(option => (
             <button
-              type="button" // ✅ แก้จุดที่ 2: ใส่ type="button" เพื่อไม่ให้ submit อัตโนมัติ
+              type="button" 
               key={option}
               onClick={() => dispatch(setBudget(option))}
               className={`px-3 py-2 rounded-2xl transition-all

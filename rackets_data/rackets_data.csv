@@ -1,5 +1,60 @@
 ﻿brand,model_name,price,style_tag,balance_tag,player_level,flex,description,image_path
-yonex,Astrox 88D pro,5800,Power smash,Head-heavy,Intermediate,stiff,ตัวท็อปสำหรับขาโหดสายบุก เน้นตบกดจากแดนหลัง พลังทำลายล้างสูง  ขึ้นเอ็นได้สูงสุด 29 ปอนด์ ,yonex/ver.pro/astrox88dpro.png
-yonex,Arcsaber 11 pro,8200,All-around,Even balance,Intermediate,Stiff,สายคอนโทรลที่จริงใจ เน้นคอนโทรลทิศทาง ฟีลตีแน่นและนุ่ม สวนกลับไว ขึ้นเอ็นได้สูงสุด 28 ปอนด์ ,yonex/ver.pro/arcsaber11pro.png
+yonex,Astrox 88D pro,5800,Power smash,Head-heavy,Intermediate,stiff,ตัวท็อปสำหรับขาโหดสายบุก เน้นตบกดจากแดนหลัง พลังทำลายล้างสูง  ขึ้นเอ็นได้สูงสุด 29 ปอนด์ ,yonex/as88d_p.png
+yonex,Arcsaber 11 pro,8200,All-around,Even balance,Intermediate,stiff,สายคอนโทรลที่จริงใจ เน้นคอนโทรลทิศทาง ฟีลตีแน่นและนุ่ม สวนกลับไว ขึ้นเอ็นได้สูงสุด 28 ปอนด์ ,yonex/arc11p.png
 victor,Thruster Ryuga II,5200,Power smash,Head-heavy,Intermediate,stiff,ตัวจบสำหรับสายบุกบ้าพลัง เน้นตบหนักหน่วง ลูกพุ่งออกจากหน้าไม้ไวและแรงมาก ขึ้นเอ็นได้โหดถึง 31 ปอนด์ ,victor/ryuga_ii.png
-victor,Thruster_k,4800,"Power smash, Speed",Head-heavy,Intermediate,stiff,ไม้สายบุกที่มีความไว หน้าไม้ตัดอากาศเร็ว ตบสนุกและดาดสวนได้ดี,victor/thruster_k.png
+victor,Thruster_k,4800,"Power smash, Fast attack",Head-heavy,Intermediate,stiff,ไม้สายบุกที่มีความไว หน้าไม้ตัดอากาศเร็ว ตบสนุกและดาดสวนได้ดี,victor/thruster_k.png
+yonex,Astrox 88 play Gen3,2000,Power smash,Head-heavy,Beginner,Medium,น้องเล็กตระกูล 88D เน้นตบแดนหลัง ก้านไม่แข็งมาก ตีสบาย,yonex/as88_pl.png
+yonex,Astrox 88s game Gen3,3200,"Speed, Control / Defense",Head-Heavy,Beginner,Medium,หัวเบาค่อนหนัก มีความคล่องตัวสูง คอนโทรลหน้าเน็ตดี เหมาะกับหน้าถึงกลางคอร์ท,yonex/as88s_g.png
+yonex,Astrox 100zz  VA,17000,Power smash,Head-heavy,Intermediate,Extra stiff,เป็นไม้พิเศษของ Astrox 100ZZ ที่ออกแบบร่วมกับ Viktor Axelsen เน้นพลังบุกสูงสุด,yonex/as100zz_va_p.png
+yonex,Arcsaber 7 Play,2200,"All-round , Control / Defense",Even balance,Beginner,medium,ไม้สายคอนโทรลรุ่นประหยัด ตีง่าย ควบคุมทิศทางได้ดั่งใจ,yonex/arc7_pl.png
+yonex,Nanoflare 1000 Play,2500,Speed,Head-light,Beginner,medium,ไม้สายสปีดที่หน้าไม้ไวสุดๆ ตัดอากาศดีมาก พลิกหน้าไม้ไว,yonex/nano1000_pl.png
+yonex,Astrox 99 Play,2400,Power smash,Head-heavy,Beginner,medium,หัวหนักจิกๆ เน้นลูกตบหนักหน่วง ในงบที่จับต้องได้,yonex/as99_pl.png
+yonex,Astrox 99pro,7690,Power smash,Head-heavy,Intermediate,stiff,ที่สุดของไม้สายพลัง หัวหนักที่สุดในรุ่น เน้นตบแหลก พลังทำลายล้างสูง (ไม้ Kento Momota),yonex/as99_pl.png
+yonex,Nanoflare 700 pro,6600,"Fast attack , Control / Defense",Head-light,Intermediate,Medium,"ไม้ตัวท็อปสายสปีดที่ ""ตีง่าย"" ที่สุด ก้านกลาง หัวเบา พลิกไว เหมาะกับเกมเร็วและคนชอบฟิลนุ่ม",yonex/nano700_p.png
+yonex,Nanoflare 800 Game,3600,Fast attack,Head-light,Intermediate,medium-stiff,หน้าไม้ตัดอากาศขั้นสุด สวนดาดเร็วๆ ได้เปรียบมาก,yonex/nano800_g.png
+yonex,Astrox 77 Pro,5600,"Power smash , All-round",Head-heavy,Intermediate,medium,ไม้บุกที่ตีง่ายที่สุดในตระกูล Pro ก้านดีดช่วยส่งแรงดีมาก,yonex/as77_p.png
+yonex,Astrox 100 ZZ,6500,Power smash,Head-heavy,Intermediate,extra stiff,ก้านตัน (Solid Core) ตีฟิลลิ่งแน่นๆ ตบแม่นยำ แต่ต้องมีข้อมือดี,yonex/as100zz_p.png
+yonex,Nanoflare 800 Pro,6200,Fast attack,Head-light,Intermediate,stiff,ไม้สายสปีดที่ก้านแข็ง ตอบสนองไวมาก เหมาะกับเกมเร็วระดับแข่งขัน,yonex/nano800_p.png
+yonex,Nanoflare 1000 Z,6500,"Fast attack , Power smash",Head-light,Intermediate,extra stiff,ที่สุดของความเร็ว สวิงไวที่สุด ตบเสียงดังสนั่น แต่ต้องแม่นลูก,yonex/nano1000z_p.png
+yonex,Arcsaber 11 Pro,6200,"Control / Defense , All-round",Even balance,Intermediate,stiff,สายคอนโทรลที่จริงใจ เน้นคอนโทรลทิศทาง ฟิลตีแน่นๆ ไม่กระด้าง,yonex/arc11_p.png
+victor,Thruster K 15,1400,Power smash,Head-heavy,Beginner,flexible,ไม้บุกน้ำหนักเบา (5U) ก้านอ่อน ตบง่ายไม่เปลืองแรง,victor/TK_15.png
+victor,DriveX 1L,1300,All-round ,Even balance,Beginner,flexible,ไม้ก้านอ่อนหัวกลาง ตีสบายๆ เซฟแรง เหมาะกับผู้หญิงหรือเด็ก,victor/drivex-1L.png
+victor,Auraspeed 3000,1490,"Fast attack , Even balance",Head-heavy,Beginner,medium,เฟรมตัดอากาศ ตีไว สวนกลับเร็ว ราคาคุ้มค่ามาก,victor/ars-3000.png
+victor,Thruster K HMR,2100,Power smash,Head-heavy,Intermediate,medium-stiff,รุ่นยอดฮิตฉายาไม้ค้อน ตบหนักสะใจ ก้านกลางๆ ไม่แข็งเกิน,victor/TK-HMR.png
+victor,Auraspeed 9000,2400,Fast attack,Head-light,Intermediate,medium,ไม้สายสปีดที่ตีง่ายมาก หน้าไม้ไว พลิกรับส่งลูกได้คล่อง,victor/ars-9000.png
+victor,Thruster Ryuga II,5200,"Power smash , Control / Defense",Head-heavy,Intermediate,stiff,ตัวจบสำหรับสายบุกบ้าพลัง เน้นตบหนักหน่วง ลูกพุ่งออกจากหน้าไม้แรง,victor/TK_ryuga_II.png
+victor,Auraspeed 90K II,5500,"Fast attack ,  Power smash",Head-light,Intermediate,stiff,ไม้สปีดที่มีพลังตบแฝง ก้านดีดดีมาก ข้อมือต้องไวหน่อย,victor/ars_90k_ii_td.png
+victor,DriveX 10 Metallic,5900,"All-round , Control / Defense",Even balance,Intermediate,stiff,ก้านผสมโลหะ ฟิลลิ่งแปลกใหม่ หน้าไม้นิ่งมาก คอนโทรลระดับเทพ,victor/drivex_10M.png
+victor,Thruster F Enhanced,5400,"Power smash , Control / Defense",Head-heavy,Intermediate,stiff,ไม้บุกที่คอนโทรลได้ดี (ไม้หมอไท่) ตบคม วางลูกแม่น,victor/TF_enchanced.png
+victor,Auraspeed 90K Metallic,7290,"Fast attack, Power smash",Head-light,Intermediate,stiff,ไม้สปีดตัวท็อปเสริมแผ่นโลหะ Metallic หน้าไม้นิ่งและไวมาก ด้ามไม้จริงฟิลลิ่งดิบสะใจ,victor/ars_90k_m.png
+li-ning,Windstorm 72,2800,Fast attack,Head-light,Intermediate,flexible,ไม้เบาหวิว (72g) พลิกหน้าไม้ไวสุดๆ ดาดหน้าเน็ตไม่มีใครทัน,lining/windstorm_72.png
+li-ning,Axforce 50,2900,Power smash,Head-heavy,Intermediate,medium-stiff,รุ่นน้อง Axforce ฟิลแน่น ตบสนุก ก้านสปริงตัวดี ไม่กระด้าง,lining/ax_50.png
+li-ning,Halbertec 2000,1800,All-round ,Even balance,Beginner,medium,ไม้สมดุล ตีง่าย รุกรับได้หมด สีสันสวยงาม,lining/hal_2000.png
+li-ning,Axforce 90 Tiger,5900,Power smash,Head-heavy,Intermediate,medium-stiff,เสือแดงบ้าพลัง ก้านดีดดีมาก หัวหนักตบหาย เหมาะกับสายบุกต่อเนื่อง,lining/ax_90_tiger_max.png
+li-ning,Axforce 90 Dragon,5900,Power smash,Head-heavy,Intermediate,stiff,มังกรฟ้าก้านแข็งกว่าเสือ เน้นลูกตบแบบ One Shot Kill ตูมเดียวหาย,lining/ax_90_dragon_max.png
+li-ning,Halbertec 9000,5500,"Control / Defense , All-round",Even balance,Intermediate,medium-stiff,ไม้ All-round ระดับท็อป สมดุลดีมาก รับเหนียว รุกคม,lining/hal_9000.png
+li-ning,BladeX 800,5200,Fast attack,Head-light,Intermediate,stiff,ไม้หน้าไว สายตบสวน ดาดสวน เร็วและแรง ก้านตอบสนองไว,lining/bladex_800.png
+li-ning,Axforce 100  (Qilin),7990,Power smash ,Head-heavy,Intermediate,Extra stiff,ที่สุดของไม้บุก ก้านบางเฉียบ 6.0mm แข็งและไว พลังตบหนักหน่วงแต่ต้องใช้แรงเยอะ,lining/ax_100_Qilin.png
+li-ning,Axforce 100 Gen 2,7990,"Power smash , All-round",Head-heavy,Intermediate,stiff,พัฒนาจากรุ่นแรก ก้านหนาขึ้น (6.2mm) ตีง่ายขึ้น นุ่มนวลขึ้น แต่ยังคงพลังบุกไว้ครบ,lining/ax_100_ii.png
+li-ning,Axforce 90 New,6290,"Power smash , Control / Defense",Head-heavy,Intermediate,stiff,รุ่นอัปเกรดตาไก่ 76 รู ก้าน 6.4mm ตีง่ายขึ้น หน้าไม้นิ่ง คอนโทรลลูกได้แม่นยำกว่าตัวเก่า,lining/ax_90_new.png
+vs,Kirin 80,1290,"Fast attack, All-round",Even balance,Beginner,flexible,ไม้ราคาประหยัด ลายสวย ตีง่าย เหมาะสำหรับคนเพิ่งเริ่มจับไม้,vs
+vs,Titan 7,1390,Power smash,Head-heavy,Beginner,medium,ไม้หัวหนักราคาเบาๆ สเปคคุ้มค่าเกินราคา ตบสนุกใช้ได้,vs
+vs,Star Wish,1990,All-round ,Even balance,Intermediate,medium,ไม้ลวดลายสวยงาม (Star) ตีง่าย สบายมือ ไม่สะท้านแขน,vs
+vs,You Long,2990,"Power smash , Fast attack",Head-heavy,Intermediate,medium-stiff,ไม้รุ่นมังกรยอดฮิต สีเขียวมรกต ตบดี ดาดไว สเปคคุ้มราคาสุดๆ,vs
+vs,Panthera,2590,Fast attack,Head-light,Intermediate,medium,ไม้สายสปีด ดีไซน์ดุดัน หน้าไว สวนกลับเร็ว,vs
+felet,TJ Power,1290,Power smash,Head-heavy,Beginner,medium,เฟรม Power แข็งแรง รองรับการขึ้นเอ็นปอนด์สูง ตบหนัก,felet
+felet,Woven TJ 1000,2590,"Power smash , Control / Defense",Head-heavy,Intermediate,stiff,โครงสร้าง Woven ทนทาน ฟิลลิ่งแน่นๆ ไม่กลวง ตบแน่น,felet
+felet,Aero Carbon,1100,Fast attack,Head-light,Beginner,flexible,ไม้เบาตีสบาย สวิงคล่องตัว เหมาะกับมือใหม่แรงน้อย,felet
+felet,Arcana 80,1890,"All-round , Control / Defense",Even balance,Intermediate,medium,ไม้คอนโทรล ก้านกลางๆ ตีง่าย เข้ามือไว รุกรับสมดุล,felet
+dunlop,Nanoblade Savage,990,All-round,Even balance,Beginner,flexible,แบรนด์เก่าแก่ ราคาประหยัดสุดๆ ทนทาน ไว้ตีออกกำลังกาย,dunlop
+dunlop,Graviton XF 88,2200,Fast attack,Head-light,Intermediate,medium,ไม้เฟรมตัดอากาศ สวิงไวมาก เสียงตัดลมเพราะๆ,dunlop
+gosen,Inferno Lite,2900,"Fast attack , Power smash",Even balance,Intermediate,medium,เฟรมบิดแบบพิเศษ ช่วยเพิ่มความนิ่งและความแรง ตีง่าย,gosen
+gosen,Roots Aermet,3200,All-round,Even balance,Intermediate,stiff,ก้านเสริมวัสดุ Aermet แข็งแรง ดีดลูกได้แรง ฟิลลิ่งเป็นเอกลักษณ์,gosen
+gosen,Inferno Raid,4500,Power smash,Head-heavy,Intermediate,stiff,เฟรมบิดตัวท็อป หัวหนัก ตบหนักหน่วงมาก ลูกพุ่งแรง,gosen
+mizuno,JPX 8 Flash,2800,Fast attack,Head-light,Intermediate,medium,เฟรมหกเหลี่ยม ตัดอากาศดี สปีดลูกไว ตีโต้สนุก,mizuno
+mizuno,Fortius 10 Quick,5200,"Fast attack , Power smash",Head-heavy,Intermediate,stiff,ไม้สายสปีดที่หัวหนัก (แปลกแต่จริง) ได้ทั้งไวและหนักในไม้เดียว,mizuno
+mizuno,Altius 01 Speed,4900,"Control / Defense , Fast attack",Head-light,Intermediate,medium-stiff,ไม้คอนโทรลสายญี่ปุ่น นุ่มนวล แม่นยำ หน้าไม้นิ่งมาก,mizuno
+hundred,Beast 80,990,Power smash,Head-heavy,Beginner,flexible,แบรนด์น้องใหม่ ราคาดี หัวหนักสะใจ ตบมันส์เกินราคา,hundred
+hundred,Atomic Air,1290,Fast attack,Head-light,Beginner,medium,ไม้เบา เน้นความคล่องตัว หน้าไม้ไว พลิกเกมรับเป็นรุกได้ดี,hundred
+kumpoo,Power Control 520A,790,All-round,Even balance,Beginner,flexible,ไม้ครูของใครหลายคน ราคาถูกมาก ทนทาน ตีง่ายสุดๆ,kumpoo
+kumpoo,K520 Pro,990,"All-round , Fast attack",Even balance,Beginner,medium,รุ่นอัปเกรด ดีไซน์สวยขึ้น ก้านดีขึ้น ตีสนุกกว่าเดิมในงบพันเดียว,kumpoo
