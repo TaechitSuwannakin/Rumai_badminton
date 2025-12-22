@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
         <div className="space-y-1">
           <div className="flex items-center gap-2 mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-bold tracking-[0.2em] text-emerald-700/60 uppercase">Racket Guide</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] text-emerald-700/60 uppercase">DEMO Racket Guide </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 leading-tight">
             เลือกไม้แบดที่เหมาะกับ <span className="text-emerald-600">สไตล์การเล่น</span>ของคุณ

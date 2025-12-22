@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../app/hooks";
+import RacketCard from "./RacketCard"; // ✅ 1. เพิ่มบรรทัดนี้: นำเข้าการ์ดตัวเทพของเรา
 
 const RacketResultSection: React.FC = () => {
   // ดึง state มาให้ครบ ทั้งข้อมูล, สถานะโหลด, และ error
@@ -44,64 +45,11 @@ const RacketResultSection: React.FC = () => {
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
     >
       {recommendedRackets.map((racket) => (
-        <div
-          key={racket.id}
-          className="group relative rounded-3xl border border-slate-100 bg-white p-4 space-y-3 transition-all hover:shadow-lg hover:-translate-y-1 duration-300"
-        >
-
-          {/* รูปภาพ */}
-          <div className="bg-slate-50 rounded-2xl p-4 mb-2">
-            <img
-                src={racket.image_url ?? "https://placehold.co/400x400?text=No+Image"} // ใช้ placeholder กันเหนียว
-                alt={racket.model_name}
-                className="h-40 w-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-
-          <div className="space-y-1">
-            <div className="flex justify-between items-start">
-                <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{racket.brand}</p>
-                    <h3 className="font-bold text-slate-800 text-base leading-tight">
-                    {racket.model_name}
-                    </h3>
-                </div>
-                <div className="text-sm font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">
-                    ฿{racket.price.toLocaleString()}
-                </div>
-            </div>
-            
-            <p className="text-xs text-slate-500 line-clamp-2 min-h-[2.5em]">
-              {racket.description ?? "ไม่มีคำอธิบายเพิ่มเติม"}
-            </p>
-          </div>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-slate-50">
-            <Badge text={racket.style_tag} color="blue" />
-            <Badge text={racket.balance_tag} color="slate" />
-            {/* เช็คก่อนว่า flex มีค่าไหม */}
-            {racket.flex && <Badge text={racket.flex} color="orange" />}
-          </div>
-
-        </div>
+        // ✅ 2. เปลี่ยนมาใช้ RacketCard แทน div ยาวๆ อันเดิม
+        <RacketCard key={racket.id} racket={racket} />
       ))}
     </section>
   );
 };
-
-// Component ย่อยสำหรับป้าย Tag (เพื่อให้โค้ดดูสะอาดตา)
-const Badge = ({ text, color }: { text: string; color: 'blue' | 'slate' | 'orange' }) => {
-    const colors = {
-        blue: 'bg-blue-50 text-blue-700',
-        slate: 'bg-slate-100 text-slate-600',
-        orange: 'bg-orange-50 text-orange-700'
-    }
-    return (
-        <span className={`px-2 py-1 rounded-md text-[10px] font-medium ${colors[color]}`}>
-            {text}
-        </span>
-    )
-}
 
 export default RacketResultSection;

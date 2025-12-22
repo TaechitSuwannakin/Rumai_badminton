@@ -6,7 +6,6 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: 'ก๊วนแบดมินตัน', href: '/groups' },
   { name: 'About', href: '/about' },
 ];
 
@@ -16,9 +15,6 @@ const Header: React.FC = () => {
       <nav className="relative max-w-5xl mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo */}
         <div className="flex items-center gap-2" onClick={() => window.scrollTo({ top :0 , behavior: 'smooth'})}>
-          <div className="h-8 w-8 rounded-full bg-emerald-500/10 border border-emerald-500/40 flex items-center justify-center">
-            <span className="text-lg">🏸</span>
-          </div>
           <span className="font-semibold text-sm sm:text-base">
             Rumai Badminton
           </span>
