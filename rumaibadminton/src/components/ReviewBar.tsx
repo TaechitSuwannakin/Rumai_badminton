@@ -60,19 +60,19 @@ const ReviewBar: React.FC<ReviewBarProps> = ({ isOpen, onClose, racketName, rack
         racket_id: racketId,
         rating: rating,
         comment: comment,
-        reviewer_name: 'Guest' // เดี๋ยวค่อยทำระบบ login ทีหลัง ใส่ Guest ไปก่อน
+        reviewer_name: 'Guest'
       }
     ]);
 
     if (error) {
       console.error('Save error:', error);
-      alert('บันทึกไม่สำเร็จ T_T (ดู error ใน Console)');
+      alert('บันทึกไม่สำเร็จ T_T');
     } else {
       // เคลียร์ค่า และโหลดรีวิวใหม่ทันที
       setRating(0);
       setComment('');
       await fetchReviews(); 
-      alert('บันทึกรีวิวเรียบร้อย! 🎉');
+      alert('บันทึกรีวิวเรียบร้อย!');
     }
     setIsLoading(false);
   };

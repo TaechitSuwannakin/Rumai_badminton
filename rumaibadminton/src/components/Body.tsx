@@ -9,7 +9,7 @@ import CourtGroupCard from "./CourtGroupCard";
 const Body: React.FC = () => {
   return (
     <>
-      {/* HERO + CARD */}
+      {/*card ก๊วน */} 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr,1fr] gap-10 lg:gap-12 items-start">
           <HeroSection />

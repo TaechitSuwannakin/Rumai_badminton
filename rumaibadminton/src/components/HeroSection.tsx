@@ -6,7 +6,6 @@ const HeroSection: React.FC = () => {
 
   return (
     <div className="relative overflow-hidden rounded-[32px] bg-slate-50/80 border border-white p-6 sm:p-8 shadow-sm">
-      {/* Decorative Blur Blobs */}
       <div className="absolute -top-10 -right-10 w-40 h-40 bg-emerald-100/40 blur-[60px] rounded-full pointer-events-none" />
       <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-100/30 blur-[60px] rounded-full pointer-events-none" />
 
@@ -73,16 +72,6 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* --- Recommendation Preview --- */}
-        {previewRacket && (
-          <div className="flex items-center justify-between px-4 py-3 bg-emerald-600/5 rounded-xl border border-emerald-100/50">
-            <p className="text-[11px] text-slate-500 font-medium">
-              Preview: <span className="text-emerald-700 font-bold">{previewRacket.brand} {previewRacket.model_name}</span> 
-              <span className="ml-1 opacity-60">({previewRacket.balance_tag.split(" ")[0]} · {previewRacket.flex})</span>
-            </p>
-            <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-tighter">Recommended</span>
-          </div>
-        )}
       </div>
     </div>
   );

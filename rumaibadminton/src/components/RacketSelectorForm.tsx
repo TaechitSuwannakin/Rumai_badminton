@@ -26,9 +26,7 @@ const PlaystylePicker: React.FC = () => {
       <h3 className="text-sm font-medium text-slate-700">สไตล์การเล่นหลัก</h3>
       <div className="grid grid-cols-2 gap-3 text-xs">
         {PLAYSTYLE_OPTIONS.map((option) => (
-          <button
-            type="button" // ✅ แก้จุดที่ 1: ใส่ type="button" เพื่อไม่ให้ submit อัตโนมัติ
-            key={option.value}
+          <button type="button" key={option.value}
             onClick={() => dispatch(setPlaystyle(option.value))}
             className={`rounded-2xl px-3 py-3 text-left transition-all shadow-sm
               ${currentStyle === option.value
