@@ -1,8 +1,6 @@
 import React from "react";
-import { useAppSelector } from "../app/hooks";
 
 const HeroSection: React.FC = () => {
-  const previewRacket = useAppSelector((state) => state.racket.recommendedRackets[0]);
 
   return (
     <div className="relative overflow-hidden rounded-[32px] bg-slate-50/80 border border-white p-6 sm:p-8 shadow-sm">
